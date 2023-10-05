@@ -3,16 +3,35 @@
 // in the html.
 var currentday = dayjs().format("dddd, MMMM, MM");
 var topOfWeb = $("#currentDay")
-topOfWeb.text(currentday)
+// var saveBtn = $(".saveBtn")
+// var textSpace = $("<textarea>")
+// var calendarText = $(".description")
+
+topOfWeb.text(currentday);
 
 $(function () {
+  console.log("test")
+  // var calendarText = $(".description").val();
+  // var printText = $(
+  //   '<li class="flex-row justify-space-between align-center p-2 bg-light text-dark">'
+  // );
+  // printText.text(calendarText);
+  // textSpace.append(printText);
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  //
+  $(".saveBtn").on('click', function () {
+    var textarea = $(this).siblings(".description");
+    var calendarText = textarea.closest(".time-block").attr("id");
+    var textSpace = textarea.val();
+    console.log(textarea.val())
+    // calendarText.text(this).text(textSpace.val());
+    // console.log(textSpace)
+    localStorage.setItem(calendarText, textSpace)
+  });
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -25,3 +44,5 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+// saveBtn.on("click",saveText);
